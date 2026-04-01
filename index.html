@@ -1,254 +1,1827 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calcio Football Club</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC ELITE - Premier Football Club</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        :root {
+            --deep-black: #0a0a0f;
+            --dark-navy: #0f1419;
+            --navy: #1a1f2e;
+            --forest-green: #1b4d3e;
+            --emerald: #059669;
+            --neon-green: #84cc16;
+            --lime: #a3e635;
+            --accent-orange: #f97316;
+            --accent-pink: #ec4899;
+            --gold: #fbbf24;
+            --text-white: #ffffff;
+            --text-gray: #9ca3af;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--deep-black);
+            color: var(--text-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
 
-body{background:#0b1d14;color:white;}
+        /* Animated Background Gradient */
+        .bg-radiant {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(132, 204, 22, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(5, 150, 105, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(249, 115, 22, 0.05) 0%, transparent 70%),
+                var(--deep-black);
+            animation: bgShift 20s ease-in-out infinite;
+        }
 
-nav{
-display:flex;justify-content:space-between;align-items:center;
-padding:15px 40px;background:#07110c;position:sticky;top:0;
-}
+        @keyframes bgShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
 
-nav h2{color:gold;}
-nav ul{display:flex;gap:15px;list-style:none;}
-nav a{color:white;text-decoration:none;}
-nav a:hover{color:gold;}
+        /* Navigation - Glassmorphism Style */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+        }
 
-.hero{
-height:90vh;
-display:flex;align-items:center;justify-content:center;
-background:url('https://images.unsplash.com/photo-1508098682722-e99c643e7f0b') center/cover;
-text-align:center;
-}
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, var(--neon-green), var(--emerald));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.hero div{
-background:rgba(0,0,0,0.6);
-padding:40px;border-radius:10px;
-}
+        .logo::before {
+            content: "⚽";
+            -webkit-text-fill-color: var(--neon-green);
+            font-size: 1.8rem;
+        }
 
-.btn{
-background:gold;color:black;padding:10px 20px;border:none;cursor:pointer;
-margin-top:15px;
-}
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
 
-section{padding:60px 30px;}
-h2{text-align:center;color:gold;margin-bottom:30px;}
+        .nav-menu a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
 
-/* cards */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
+        .nav-menu a:hover {
+            color: var(--neon-green);
+        }
 
-.card{
-background:#12241a;
-padding:20px;border-radius:10px;
-transition:0.3s;
-}
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-green), var(--emerald));
+            transition: width 0.3s ease;
+        }
 
-.card:hover{transform:translateY(-5px);}
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
 
-/* login */
-.form-box{
-max-width:400px;margin:auto;
-display:flex;flex-direction:column;gap:10px;
-}
+        .nav-cta {
+            background: linear-gradient(135deg, var(--neon-green), var(--emerald));
+            color: var(--deep-black) !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600 !important;
+        }
 
-input{
-padding:10px;border:none;border-radius:5px;
-}
+        .nav-cta::after {
+            display: none !important;
+        }
 
-/* news */
-.news{
-display:grid;
-grid-template-columns:2fr 1fr;
-gap:20px;
-}
+        /* Hero Section with Radiant Overlay */
+        .hero {
+            min-height: 100vh;
+            background: 
+                linear-gradient(135deg, rgba(10, 10, 15, 0.9) 0%, rgba(15, 20, 25, 0.7) 50%, rgba(27, 77, 62, 0.3) 100%),
+                url('https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=1920');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
 
-.news img{width:100%;border-radius:10px;}
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(132, 204, 22, 0.2) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
 
-/* shop */
-.shop img{width:100%;border-radius:10px;}
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
 
-footer{
-background:#07110c;text-align:center;padding:30px;
-margin-top:40px;
-}
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            animation: fadeInUp 1s ease;
+        }
 
-@media(max-width:768px){
-.news{grid-template-columns:1fr;}
-}
-</style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(132, 204, 22, 0.2);
+            border: 1px solid var(--neon-green);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--lime) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(132, 204, 22, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--neon-green), var(--emerald));
+            color: var(--deep-black);
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(132, 204, 22, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(132, 204, 22, 0.6);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            border: 2px solid var(--glass-border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+            background: rgba(132, 204, 22, 0.1);
+        }
+
+        /* Floating Stats Bar */
+        .stats-bar {
+            position: absolute;
+            bottom: 50px;
+            left: 5%;
+            right: 5%;
+            display: flex;
+            justify-content: space-around;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            z-index: 10;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--neon-green);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Two Column Section with Cards */
+        .two-column-section {
+            padding: 6rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .column-content h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, var(--lime));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .column-content > p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Nested List Styling - Card Based */
+        .nested-list-container {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .nested-list-container h3 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nested-list {
+            list-style: none;
+        }
+
+        .nested-list > li {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--emerald);
+            font-weight: 600;
+            color: var(--text-white);
+            font-size: 1.1rem;
+        }
+
+        .nested-list ul {
+            margin-top: 0.8rem;
+            margin-left: 0;
+            list-style: none;
+        }
+
+        .nested-list ul li {
+            font-weight: 400;
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .nested-list ul li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--neon-green);
+        }
+
+        /* Image Container with Glow Effect */
+        .image-container {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                0 0 0 1px var(--glass-border),
+                0 0 60px rgba(132, 204, 22, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .image-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 
+                0 30px 60px -12px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(132, 204, 22, 0.3),
+                0 0 80px rgba(132, 204, 22, 0.2);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(10, 10, 15, 0.95));
+            padding: 3rem 2rem 2rem;
+            color: white;
+        }
+
+        .image-overlay h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--neon-green);
+        }
+
+        .image-overlay p {
+            color: var(--text-gray);
+        }
+
+        /* Gallery Section - Grid Layout */
+        .gallery-section {
+            padding: 6rem 5%;
+            background: linear-gradient(180deg, transparent 0%, rgba(27, 77, 62, 0.1) 100%);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fff, var(--lime));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 280px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 1px solid var(--glass-border);
+        }
+
+        .gallery-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+            height: 100%;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            border-color: var(--neon-green);
+            box-shadow: 0 20px 40px rgba(132, 204, 22, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(10, 10, 15, 0.95));
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-caption h4 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--neon-green);
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .gallery-caption p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Video Section - Card Grid */
+        .video-section {
+            padding: 6rem 5%;
+            position: relative;
+        }
+
+        .video-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 0% 100%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 100% 0%, rgba(132, 204, 22, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .video-container {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .video-container:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-green);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(132, 204, 22, 0.1);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: var(--dark-navy);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-tag {
+            display: inline-block;
+            background: rgba(132, 204, 22, 0.2);
+            color: var(--neon-green);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+        }
+
+        .video-info h3 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--text-white);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .video-info p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+
+        /* Tables Section with Modern Styling */
+        .tables-section {
+            padding: 6rem 5%;
+            background: linear-gradient(180deg, rgba(27, 77, 62, 0.1) 0%, transparent 100%);
+        }
+
+        .tables-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+        }
+
+        .table-container {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .table-header h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .table-header h3 span {
+            font-size: 1.8rem;
+        }
+
+        .live-badge {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: pulse 2s infinite;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-size: 0.95rem;
+        }
+
+        thead {
+            background: rgba(132, 204, 22, 0.1);
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.8rem;
+            color: var(--neon-green);
+            border-bottom: 2px solid var(--emerald);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+            color: var(--text-gray);
+        }
+
+        tr:hover td {
+            background: rgba(132, 204, 22, 0.05);
+            color: var(--text-white);
+        }
+
+        .team-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: var(--text-white);
+        }
+
+        .team-logo {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, var(--neon-green), var(--emerald));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--deep-black);
+        }
+
+        .position {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--glass);
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .position.top {
+            background: linear-gradient(135deg, var(--neon-green), var(--emerald));
+            color: var(--deep-black);
+        }
+
+        .position.top-4 {
+            background: rgba(132, 204, 22, 0.3);
+            color: var(--neon-green);
+        }
+
+        .points {
+            font-weight: 700;
+            color: var(--neon-green);
+        }
+
+        /* Stats Cards */
+        .stats-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--neon-green);
+            transform: translateX(5px);
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, rgba(132, 204, 22, 0.2), rgba(5, 150, 105, 0.2));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .stat-content h4 {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-content .number {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--neon-green);
+        }
+
+        /* Content Section with Cards */
+        .content-section {
+            padding: 6rem 5%;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .content-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-green), var(--emerald));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(132, 204, 22, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .content-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-date {
+            font-size: 0.8rem;
+            color: var(--neon-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .content-card h3 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--text-white);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            line-height: 1.3;
+        }
+
+        .content-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--neon-green);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 10px;
+        }
+
+        /* Features Section - Icon Grid */
+        .features-section {
+            padding: 6rem 5%;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(132, 204, 22, 0.1) 0%, transparent 50%),
+                var(--dark-navy);
+            position: relative;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(132, 204, 22, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-green);
+        }
+
+        .feature-card:hover::after {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--neon-green), var(--emerald));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(132, 204, 22, 0.3);
+        }
+
+        .feature-card h4 {
+            font-family: 'Oswald', sans-serif;
+            margin-bottom: 0.8rem;
+            color: var(--text-white);
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Match Schedule Widget */
+        .schedule-widget {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .match-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .match-row:hover {
+            background: rgba(132, 204, 22, 0.05);
+            border-radius: 12px;
+        }
+
+        .match-teams {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .match-vs {
+            background: var(--glass);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        .match-info {
+            text-align: right;
+        }
+
+        .match-date {
+            color: var(--neon-green);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .match-time {
+            color: var(--text-gray);
+            font-size: 0.85rem;
+        }
+
+        /* Footer - Multi Column */
+        .footer {
+            background: var(--deep-black);
+            border-top: 1px solid var(--glass-border);
+            padding: 5rem 5% 2rem;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 300px;
+        }
+
+        .footer-section h4 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--text-white);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-section a:hover {
+            color: var(--neon-green);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--neon-green);
+            border-color: var(--neon-green);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--glass-border);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-green);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .tables-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .gallery-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 1;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .two-column-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-bar {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-item:nth-child(1) {
+                grid-column: span 1;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- NAV -->
-<nav>
-<h2>CALCIO</h2>
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#matches">Matches</a></li>
-<li><a href="#teams">Teams</a></li>
-<li><a href="#shop">Shop</a></li>
-<li><a href="#login">Login</a></li>
-</ul>
-</nav>
+    <div class="bg-radiant"></div>
 
-<!-- HERO -->
-<section class="hero">
-<div>
-<h1>Your Path to The Crown Starts Here</h1>
-<p>Unleash your passion for the game</p>
-<button class="btn">Join Our Team</button>
-</div>
-</section>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">FC ELITE</div>
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#fixtures">Fixtures</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#stats">Statistics</a></li>
+            <li><a href="#news">News</a></li>
+            <li><a href="#contact" class="nav-cta">Join Club</a></li>
+        </ul>
+    </nav>
 
-<!-- MATCHES -->
-<section id="matches">
-<h2>Upcoming Matches</h2>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span>⚡</span> 2024/25 Season Champions
+            </div>
+            <h1>Where Legends Are Made</h1>
+            <p>Experience the passion and precision of elite football. Join FC Elite in our pursuit of greatness and be part of a legacy that spans generations.</p>
+            <div class="hero-buttons">
+                <a href="#fixtures" class="btn-primary">View Fixtures</a>
+                <a href="#team" class="btn-secondary">Meet The Team</a>
+            </div>
+        </div>
+        
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-number">18</span>
+                <span class="stat-label">League Titles</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Champions Cups</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">85K</span>
+                <span class="stat-label">Stadium Capacity</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2.5M</span>
+                <span class="stat-label">Global Fans</span>
+            </div>
+        </div>
+    </section>
 
-<div style="text-align:center;margin-bottom:20px;">
-<button class="btn" onclick="filter('all')">All</button>
-<button class="btn" onclick="filter('men')">Men</button>
-<button class="btn" onclick="filter('women')">Women</button>
-</div>
+    <!-- Two Column Section -->
+    <section class="two-column-section" id="team">
+        <div class="column-content">
+            <h2>Built on Passion & Precision</h2>
+            <p>Since 1924, FC Elite has stood as a beacon of excellence in world football. Our state-of-the-art facilities and world-renowned academy continue to produce talent that defines the beautiful game.</p>
+            <p>With a philosophy centered on attacking football and tactical innovation, we've cultivated a winning culture that resonates through every level of our organization.</p>
+            
+            <!-- Nested List -->
+            <div class="nested-list-container">
+                <h3>Club Structure</h3>
+                <ul class="nested-list">
+                    <li>First Team Squad
+                        <ul>
+                            <li>3 Elite Goalkeepers</li>
+                            <li>8 Defensive Specialists</li>
+                            <li>8 Creative Midfielders</li>
+                            <li>6 Prolific Strikers</li>
+                        </ul>
+                    </li>
+                    <li>Youth Development
+                        <ul>
+                            <li>U-18 Premier Academy</li>
+                            <li>U-16 Regional Champions</li>
+                            <li>U-14 Rising Stars Program</li>
+                        </ul>
+                    </li>
+                    <li>Women's Division
+                        <ul>
+                            <li>First Team - Top Flight</li>
+                            <li>Development Academy</li>
+                        </ul>
+                    </li>
+                    <li>Performance Center
+                        <ul>
+                            <li>Sports Science Laboratory</li>
+                            <li>Recovery & Rehabilitation</li>
+                            <li>Nutritional Excellence Program</li>
+                        </ul>
+                    </li>
+                    <li>Community Foundation
+                        <ul>
+                            <li>Youth Outreach Programs</li>
+                            <li>Grassroots Development</li>
+                            <li>Charitable Initiatives</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="image-container" style="height: 650px;">
+            <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" alt="FC Elite Victory Celebration">
+            <div class="image-overlay">
+                <h3>Trophy Celebration 2024</h3>
+                <p>Lifting the Championship Cup at Home Stadium</p>
+            </div>
+        </div>
+    </section>
 
-<div class="grid">
-<div class="card men">Men League<br>12 May</div>
-<div class="card women">Women Cup<br>15 May</div>
-<div class="card men">International<br>20 May</div>
-</div>
-</section>
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="section-header">
+            <h2>Moments of Glory</h2>
+            <p>Capturing the passion, intensity, and triumph of FC Elite</p>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=1200" alt="Stadium Night">
+                <div class="gallery-caption">
+                    <h4>Under the Lights</h4>
+                    <p>Home Stadium - 85,000 capacity</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600" alt="Match Action">
+                <div class="gallery-caption">
+                    <h4>Match Day Intensity</h4>
+                    <p>vs City Rivals - Decisive Victory</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600" alt="Training">
+                <div class="gallery-caption">
+                    <h4>Training Ground</h4>
+                    <p>Preparation Meets Excellence</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1522778119026-d647f0565c6a?w=600" alt="Team Huddle">
+                <div class="gallery-caption">
+                    <h4>Unity in Purpose</h4>
+                    <p>Pre-Match Rituals</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600" alt="Youth Academy">
+                <div class="gallery-caption">
+                    <h4>Future Stars</h4>
+                    <p>Academy Showcase Tournament</p>
+                </div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?w=600" alt="Fan Celebration">
+                <div class="gallery-caption">
+                    <h4>The 12th Man</h4>
+                    <p>Passionate Supporters Worldwide</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- STANDINGS -->
-<section>
-<h2>League Table</h2>
-<table border="1" width="100%">
-<tr><th>M</th><th>W</th><th>D</th><th>L</th><th>P</th></tr>
-<tr><td>29</td><td>21</td><td>5</td><td>3</td><td>68</td></tr>
-<tr><td>29</td><td>19</td><td>5</td><td>5</td><td>62</td></tr>
-</table>
-</section>
+    <!-- Video Section -->
+    <section class="video-section" id="videos">
+        <div class="section-header">
+            <h2>Match Center</h2>
+            <p>Relive the greatest moments from our recent campaign</p>
+        </div>
+        
+        <div class="video-grid">
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <span class="video-tag">Highlights</span>
+                    <h3>FC Elite vs Metro United</h3>
+                    <p>Dramatic 3-2 comeback victory featuring a stunning last-minute winner from captain Marco Silva in the 89th minute.</p>
+                </div>
+            </div>
+            
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <span class="video-tag">Behind The Scenes</span>
+                    <h3>Training Ground Access</h3>
+                    <p>Exclusive footage from our state-of-the-art facilities showing tactical preparations and individual skill sessions.</p>
+                </div>
+            </div>
+            
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <span class="video-tag">Youth</span>
+                    <h3>Academy Spotlight</h3>
+                    <p>Watch our U-18 prospects display their incredible talent in the regional championship final against Northern Stars.</p>
+                </div>
+            </div>
+            
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <span class="video-tag">Review</span>
+                    <h3>Season Review 2024</h3>
+                    <p>Comprehensive look back at our championship-winning campaign featuring all 78 goals and key tactical moments.</p>
+                </div>
+            </div>
+            
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <span class="video-tag">Interview</span>
+                    <h3>Player Insights</h3>
+                    <p>Candid conversations with first-team players about their ambitions, routines, and what it means to wear the shirt.</p>
+                </div>
+            </div>
+        </div>
 
-<!-- NEWS -->
-<section>
-<h2>Latest News</h2>
-<div class="news">
-<div>
-<img src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a">
-<h3>Team Back in Training</h3>
-<p>Preparing for upcoming tournaments...</p>
-</div>
+        <!-- Match Schedule Widget -->
+        <div class="schedule-widget">
+            <div class="table-header">
+                <h3><span>📅</span> Upcoming Fixtures</h3>
+                <a href="#" class="btn-secondary" style="padding: 0.5rem 1.5rem; font-size: 0.85rem;">View All</a>
+            </div>
+            
+            <div class="match-row">
+                <div class="match-teams">
+                    <span>FC ELITE</span>
+                    <span class="match-vs">VS</span>
+                    <span>Coastal FC</span>
+                </div>
+                <div class="match-info">
+                    <div class="match-date">Sat, 15 Feb 2025</div>
+                    <div class="match-time">20:00 GMT • Home Stadium</div>
+                </div>
+            </div>
+            
+            <div class="match-row">
+                <div class="match-teams">
+                    <span>Metro United</span>
+                    <span class="match-vs">VS</span>
+                    <span>FC ELITE</span>
+                </div>
+                <div class="match-info">
+                    <div class="match-date">Wed, 19 Feb 2025</div>
+                    <div class="match-time">19:45 GMT • Away</div>
+                </div>
+            </div>
+            
+            <div class="match-row">
+                <div class="match-teams">
+                    <span>FC ELITE</span>
+                    <span class="match-vs">VS</span>
+                    <span>City Rivals</span>
+                </div>
+                <div class="match-info">
+                    <div class="match-date">Sun, 23 Feb 2025</div>
+                    <div class="match-time">16:30 GMT • Home Stadium</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div>
-<p>• Big win pushes team top</p>
-<p>• Women's squad shines</p>
-<p>• Youth team dominates</p>
-</div>
-</div>
-</section>
+    <!-- Tables Section -->
+    <section class="tables-section" id="stats">
+        <div class="section-header">
+            <h2>League Standings</h2>
+            <p>Current season performance and player statistics</p>
+        </div>
+        
+        <div class="tables-grid">
+            <div class="table-container">
+                <div class="table-header">
+                    <h3><span>🏆</span> Premier League Table</h3>
+                    <span class="live-badge">Live</span>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Club</th>
+                            <th>MP</th>
+                            <th>W</th>
+                            <th>D</th>
+                            <th>L</th>
+                            <th>GD</th>
+                            <th>Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="position top">1</span></td>
+                            <td class="team-cell">
+                                <div class="team-logo">FE</div>
+                                FC Elite
+                            </td>
+                            <td>24</td>
+                            <td>19</td>
+                            <td>3</td>
+                            <td>2</td>
+                            <td>+38</td>
+                            <td class="points">60</td>
+                        </tr>
+                        <tr>
+                            <td><span class="position top">2</span></td>
+                            <td class="team-cell">
+                                <div class="team-logo">CR</div>
+                                City Rivals
+                            </td>
+                            <td>24</td>
+                            <td>17</td>
+                            <td>4</td>
+                            <td>3</td>
+                            <td>+28</td>
+                            <td class="points">55</td>
+                        </tr>
+                        <tr>
+                            <td><span class="position top-4">3</span></td>
+                            <td class="team-cell">
+                                <div class="team-logo">NS</div>
+                                Northern Stars
+                            </td>
+                            <td>24</td>
+                            <td>15</td>
+                            <td>5</td>
+                            <td>4</td>
+                            <td>+20</td>
+                            <td class="points">50</td>
+                        </tr>
+                        <tr>
+                            <td><span class="position top-4">4</span></td>
+                            <td class="team-cell">
+                                <div class="team-logo">CF</div>
+                                Coastal FC
+                            </td>
+                            <td>24</td>
+                            <td>14</td>
+                            <td>3</td>
+                            <td>7</td>
+                            <td>+12</td>
+                            <td class="points">45</td>
+                        </tr>
+                        <tr>
+                            <td><span class="position">5</span></td>
+                            <td class="team-cell">
+                                <div class="team-logo">MU</div>
+                                Metro United
+                            </td>
+                            <td>24</td>
+                            <td>12</td>
+                            <td>6</td>
+                            <td>6</td>
+                            <td>+8</td>
+                            <td class="points">42</td>
+                        </tr>
+                        <tr>
+                            <td><span class="position">6</span></td>
+                            <td class="team-cell">
+                                <div class="team-logo">VR</div>
+                                Valley Rovers
+                            </td>
+                            <td>24</td>
+                            <td>10</td>
+                            <td>5</td>
+                            <td>9</td>
+                            <td>-2</td>
+                            <td class="points">35</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-<!-- TEAMS -->
-<section id="teams">
-<h2>Our Teams</h2>
-<div class="grid">
-<div class="card">Men Team</div>
-<div class="card">Women Team</div>
-<div class="card">Youth Team</div>
-</div>
-</section>
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon">⚽</div>
+                    <div class="stat-content">
+                        <h4>Top Scorer</h4>
+                        <div class="number">Marco Silva</div>
+                        <small style="color: var(--neon-green);">18 Goals</small>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-content">
+                        <h4>Most Assists</h4>
+                        <div class="number">James Rodriguez</div>
+                        <small style="color: var(--neon-green);">14 Assists</small>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">🛡️</div>
+                    <div class="stat-content">
+                        <h4>Clean Sheets</h4>
+                        <div class="number">David Kim</div>
+                        <small style="color: var(--neon-green);">12 Clean Sheets</small>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-content">
+                        <h4>Player Rating</h4>
+                        <div class="number">8.4</div>
+                        <small style="color: var(--neon-green);">Marco Silva</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- SHOP -->
-<section id="shop">
-<h2>Shop</h2>
-<div class="grid shop">
-<div class="card">
-<img src="https://images.unsplash.com/photo-1528701800489-20be3cde6a0b">
-<h3>Jersey</h3>
-<button class="btn" onclick="addToCart('Jersey')">Add</button>
-</div>
+    <!-- News Section with Formatted Paragraphs -->
+    <section class="content-section" id="news">
+        <div class="section-header">
+            <h2>Latest News</h2>
+            <p>Stories from around the club</p>
+        </div>
+        
+        <div class="content-grid">
+            <article class="content-card">
+                <div class="card-date">January 28, 2025</div>
+                <h3>Championship Push Intensifies as Season Enters Critical Phase</h3>
+                <p>Five games remain in the season, and FC Elite sits comfortably at the top of the table with a five-point cushion. The squad's resilience has been tested through injuries and suspensions, yet the depth of talent within our ranks has proven formidable.</p>
+                <p>Manager Alex Ferguson Jr. has rotated the squad effectively, ensuring fresh legs for the crucial run-in. The upcoming fixture against City Rivals could prove decisive in securing our 19th league title.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+            
+            <article class="content-card">
+                <div class="card-date">January 25, 2025</div>
+                <h3>Youth Academy Continues to Produce World-Class Talent</h3>
+                <p>Our renowned youth academy continues to be the envy of the league. Three graduates from the U-18 squad have been promoted to first-team training this month, with striker Leo Messi Jr. already making his senior debut.</p>
+                <p>The academy director has implemented revolutionary training methodology focusing on cognitive development alongside technical skills, producing well-rounded athletes ready for top-flight football.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+            
+            <article class="content-card">
+                <div class="card-date">January 22, 2025</div>
+                <h3>Stadium Expansion Project Receives Unanimous Approval</h3>
+                <p>City council has approved our ambitious stadium expansion, increasing capacity from 45,000 to 65,000 seats by 2026. The design incorporates sustainable architecture including solar panel roofing and rainwater harvesting systems.</p>
+                <p>The expanded stadium will feature improved accessibility, additional VIP lounges, and a museum dedicated to the club's 100-year history. Construction begins this summer.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+            
+            <article class="content-card">
+                <div class="card-date">January 20, 2025</div>
+                <h3>Community Initiative Reaches 10,000 Children Milestone</h3>
+                <p>Our "Football for All" program has provided free coaching to over 10,000 children from underprivileged backgrounds. Three participants have already earned scholarships to our academy.</p>
+                <p>We remain committed to using football as a force for positive social change, with plans to expand the program to neighboring counties next season, reaching even more aspiring young athletes.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+            
+            <article class="content-card">
+                <div class="card-date">January 18, 2025</div>
+                <h3>Women's Team Secures Promotion to Top Flight</h3>
+                <p>Our women's team has secured promotion with three games to spare, capping an incredible season that saw them lose only twice in 28 matches. Captain Sarah Johnson has led by example.</p>
+                <p>The women's team will share the expanded stadium starting next season, with dedicated facilities and equal access to training resources, marking a significant step for equality in sport.</p>
+                <a href="#" class="read-more">Read More →</a>
+            </article>
+        </div>
+    </section>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1517649763962-0c623066013b">
-<h3>Boots</h3>
-<button class="btn" onclick="addToCart('Boots')">Add</button>
-</div>
-</div>
-</section>
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="section-header">
+            <h2>FC Elite Experience</h2>
+            <p>Discover what makes our club truly special</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h4>Mobile App</h4>
+                <p>Get live match updates, exclusive content, and ticket notifications directly to your smartphone with our official app.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🏟️</div>
+                <h4>Virtual Tour</h4>
+                <p>Explore our iconic stadium from anywhere in the world with our immersive 360-degree virtual experience.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎫</div>
+                <h4>Digital Tickets</h4>
+                <p>Seamless entry with NFC-enabled digital tickets and season pass integration for members.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h4>Live Analytics</h4>
+                <p>Real-time match statistics powered by advanced AI-driven insights and performance metrics.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🛒</div>
+                <h4>Club Shop</h4>
+                <p>Official merchandise with worldwide shipping and exclusive member discounts on all products.</p>
+            </div>
+        </div>
+    </section>
 
-<!-- LOGIN -->
-<section id="login">
-<h2>Login / Register</h2>
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">FC ELITE</div>
+                <p>Experience the passion, power, and precision of elite football. Join us in our journey to greatness.</p>
+                <div class="social-links">
+                    <a href="#">f</a>
+                    <a href="#">t</a>
+                    <a href="#">in</a>
+                    <a href="#">yt</a>
+                    <a href="#">ig</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#team">First Team</a></li>
+                    <li><a href="#fixtures">Fixtures</a></li>
+                    <li><a href="#stats">Statistics</a></li>
+                    <li><a href="#news">News</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Fan Services</h4>
+                <ul>
+                    <li><a href="#">Ticket Office</a></li>
+                    <li><a href="#">Membership</a></li>
+                    <li><a href="#">Club Shop</a></li>
+                    <li><a href="#">Hospitality</a></li>
+                    <li><a href="#">Fan Forum</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#">Stadium Tours</a></li>
+                    <li><a href="#">Media Enquiries</a></li>
+                    <li><a href="#">Sponsorship</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Help Center</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 FC Elite Football Club. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Settings</a>
+            </div>
+        </div>
+    </footer>
 
-<div class="form-box">
-<input id="email" type="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
+    <script>
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
 
-<button class="btn" onclick="register()">Register</button>
-<button class="btn" onclick="login()">Login</button>
-</div>
-</section>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
 
-<!-- CHART -->
-<section>
-<h2>Match Activity</h2>
-<canvas id="chart"></canvas>
-</section>
+        document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
 
-<!-- FOOTER -->
-<footer>
-<h3>CALCIO CLUB</h3>
-<p>© 2026 All rights reserved</p>
-</footer>
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-<!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-// FILTER
-function filter(type){
-let cards=document.querySelectorAll('.card');
-cards.forEach(c=>{
-if(type==='all'){c.style.display='block';}
-else{c.style.display=c.classList.contains(type)?'block':'none';}
-});
-}
-
-// CART
-let cart=[];
-function addToCart(item){
-cart.push(item);
-alert(item+" added to cart");
-}
-
-// CHART
-new Chart(document.getElementById("chart"),{
-type:'bar',
-data:{
-labels:['8AM','10AM','12PM','2PM','4PM'],
-datasets:[{label:'Matches',data:[2,4,3,5,6]}]
-}
-});
-
-// FIREBASE (PUT YOUR CONFIG)
-function register(){
-alert("Connect Firebase to enable registration");
-}
-
-function login(){
-alert("Connect Firebase to enable login");
-}
-</script>
-
+        // Navbar Background on Scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(10, 10, 15, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 15, 0.8)';
+            }
+        });
+    </script>
 </body>
 </html>
