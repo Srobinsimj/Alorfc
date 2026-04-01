@@ -1,633 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Victory Soccer Club | The Crown Awaits</title>
-    <!-- Font Awesome 6 (free) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: modern sans + display heading -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Bebas+Neue&display=swap" rel="stylesheet">
-    <!-- Chart.js CDN for data visualization -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calcio Football Club</title>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fafafc;
-            color: #0a1c2f;
-            line-height: 1.5;
-            scroll-behavior: smooth;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-        /* color palette: deep green, gold, dark accent */
-        :root {
-            --primary-dark: #0a2f2a;
-            --primary-green: #1e4a3b;
-            --accent-gold: #d4af37;
-            --accent-gold-light: #f5e7b2;
-            --gray-bg: #f4f6f9;
-            --card-white: #ffffff;
-            --dark-text: #111827;
-            --light-text: #4b5563;
-            --border-light: #e5e7eb;
-        }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+body{background:#0b1d14;color:white;}
 
-        /* header / nav */
-        .navbar {
-            background: var(--card-white);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--border-light);
-        }
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 24px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .logo h1 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2rem;
-            letter-spacing: 2px;
-            color: var(--primary-green);
-        }
-        .logo span {
-            color: var(--accent-gold);
-        }
-        .nav-links {
-            display: flex;
-            gap: 28px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .nav-links a {
-            text-decoration: none;
-            font-weight: 600;
-            color: var(--dark-text);
-            transition: 0.2s;
-            font-size: 0.95rem;
-        }
-        .nav-links a:hover {
-            color: var(--accent-gold);
-        }
-        .btn-login {
-            background: var(--primary-green);
-            color: white !important;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: 600;
-        }
-        .btn-login:hover {
-            background: #0f3b2f;
-            color: white;
-        }
-        .menu-icon {
-            display: none;
-            font-size: 1.6rem;
-            cursor: pointer;
-        }
+nav{
+display:flex;justify-content:space-between;align-items:center;
+padding:15px 40px;background:#07110c;position:sticky;top:0;
+}
 
-        /* Hero */
-        .hero {
-            background: linear-gradient(107deg, #0f2c24 0%, #0a241e 100%), url('https://placehold.co/1600x700/1e4a3b/ffffff?text=Soccer+Stadium') center/cover;
-            background-blend-mode: overlay;
-            padding: 80px 0;
-            color: white;
-            text-align: center;
-        }
-        .hero-content h2 {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 3.8rem;
-            letter-spacing: 2px;
-            margin-bottom: 16px;
-        }
-        .hero-content p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            margin-bottom: 32px;
-        }
-        .btn-primary {
-            background: var(--accent-gold);
-            color: #0a2f2a;
-            padding: 14px 38px;
-            border-radius: 50px;
-            font-weight: 800;
-            text-decoration: none;
-            display: inline-block;
-            transition: 0.2s;
-            font-size: 1.1rem;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.2);
-        }
-        .btn-primary:hover {
-            background: #c7a71e;
-            transform: scale(1.02);
-        }
+nav h2{color:gold;}
+nav ul{display:flex;gap:15px;list-style:none;}
+nav a{color:white;text-decoration:none;}
+nav a:hover{color:gold;}
 
-        /* section titles */
-        .section-title {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 32px;
-            position: relative;
-            display: inline-block;
-        }
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--accent-gold);
-        }
+.hero{
+height:90vh;
+display:flex;align-items:center;justify-content:center;
+background:url('https://images.unsplash.com/photo-1508098682722-e99c643e7f0b') center/cover;
+text-align:center;
+}
 
-        /* filter tabs */
-        .filter-tabs {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-bottom: 32px;
-        }
-        .filter-btn {
-            background: transparent;
-            border: 1px solid var(--border-light);
-            padding: 8px 24px;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .filter-btn.active, .filter-btn:hover {
-            background: var(--primary-green);
-            color: white;
-            border-color: var(--primary-green);
-        }
+.hero div{
+background:rgba(0,0,0,0.6);
+padding:40px;border-radius:10px;
+}
 
-        /* match cards grid */
-        .matches-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 28px;
-            margin-bottom: 40px;
-        }
-        .match-card {
-            background: var(--card-white);
-            border-radius: 24px;
-            padding: 20px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-            transition: all 0.2s ease;
-            border: 1px solid var(--border-light);
-        }
-        .match-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
-        }
-        .tourney {
-            font-weight: 800;
-            color: var(--primary-green);
-        }
-        .match-date {
-            color: var(--accent-gold);
-            font-weight: 700;
-            margin: 8px 0;
-        }
-        .venue {
-            font-size: 0.85rem;
-            color: var(--light-text);
-        }
+.btn{
+background:gold;color:black;padding:10px 20px;border:none;cursor:pointer;
+margin-top:15px;
+}
 
-        /* League Table */
-        .standings-wrapper {
-            background: var(--card-white);
-            border-radius: 28px;
-            padding: 24px;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
-            overflow-x: auto;
-        }
-        .standings-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-        }
-        .standings-table th, .standings-table td {
-            padding: 14px 8px;
-            text-align: center;
-            border-bottom: 1px solid var(--border-light);
-        }
-        .standings-table th {
-            background: #f0f2f5;
-            font-weight: 800;
-        }
-        .team-name {
-            text-align: left;
-            font-weight: 600;
-        }
+section{padding:60px 30px;}
+h2{text-align:center;color:gold;margin-bottom:30px;}
 
-        /* news section 2col */
-        .news-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            margin-bottom: 48px;
-        }
-        .featured-news {
-            background: var(--card-white);
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        }
-        .featured-img {
-            background: #1e4a3b;
-            height: 200px;
-            background-image: url('https://placehold.co/800x400/1e4a3b/ffffff?text=Asian+Cup+Spirit');
-            background-size: cover;
-            background-position: center;
-        }
-        .featured-content {
-            padding: 24px;
-        }
-        .news-list {
-            background: var(--card-white);
-            border-radius: 28px;
-            padding: 24px;
-        }
-        .news-item {
-            border-bottom: 1px solid var(--border-light);
-            padding: 18px 0;
-        }
-        .news-item h4 {
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
+/* cards */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
 
-        /* How it works + Tournaments */
-        .tournament-series {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            margin: 40px 0;
-        }
-        .tournament-card, .series-card {
-            background: var(--card-white);
-            border-radius: 28px;
-            padding: 24px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        }
-        .tournament-item {
-            margin-bottom: 20px;
-            border-left: 4px solid var(--accent-gold);
-            padding-left: 18px;
-        }
-        .series-badge {
-            background: var(--primary-green);
-            color: white;
-            padding: 6px 16px;
-            border-radius: 40px;
-            display: inline-block;
-            font-size: 0.8rem;
-            margin-bottom: 16px;
-        }
-        .series-row {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin: 16px 0;
-        }
+.card{
+background:#12241a;
+padding:20px;border-radius:10px;
+transition:0.3s;
+}
 
-        /* Squad cards */
-        .squad-grid {
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-            margin: 32px 0;
-        }
-        .squad-card {
-            flex: 1;
-            background: var(--card-white);
-            border-radius: 28px;
-            padding: 24px;
-            text-align: center;
-            transition: 0.2s;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        }
-        .squad-icon {
-            font-size: 3rem;
-            color: var(--accent-gold);
-        }
+.card:hover{transform:translateY(-5px);}
 
-        /* chart canvas */
-        .chart-container {
-            background: var(--card-white);
-            border-radius: 28px;
-            padding: 24px;
-            margin: 40px 0;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        }
+/* login */
+.form-box{
+max-width:400px;margin:auto;
+display:flex;flex-direction:column;gap:10px;
+}
 
-        /* footer */
-        .footer {
-            background: #0a1c17;
-            color: #ddd;
-            padding: 48px 0 24px;
-            margin-top: 60px;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 32px;
-            margin-bottom: 32px;
-        }
-        .footer a {
-            color: #ccc;
-            text-decoration: none;
-        }
-        .social-icons i {
-            font-size: 1.5rem;
-            margin-right: 18px;
-            transition: 0.2s;
-        }
-        .social-icons i:hover {
-            color: var(--accent-gold);
-        }
-        .copyright {
-            text-align: center;
-            border-top: 1px solid #2d443e;
-            padding-top: 24px;
-            font-size: 0.8rem;
-        }
+input{
+padding:10px;border:none;border-radius:5px;
+}
 
-        @media (max-width: 860px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                background: white;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                padding: 24px;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            }
-            .nav-links.show {
-                display: flex;
-            }
-            .menu-icon {
-                display: block;
-            }
-            .news-section, .tournament-series {
-                grid-template-columns: 1fr;
-            }
-            .hero-content h2 {
-                font-size: 2.5rem;
-            }
-        }
-    </style>
+/* news */
+.news{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
+}
+
+.news img{width:100%;border-radius:10px;}
+
+/* shop */
+.shop img{width:100%;border-radius:10px;}
+
+footer{
+background:#07110c;text-align:center;padding:30px;
+margin-top:40px;
+}
+
+@media(max-width:768px){
+.news{grid-template-columns:1fr;}
+}
+</style>
 </head>
+
 <body>
 
-<header class="navbar">
-    <div class="nav-container">
-        <div class="logo">
-            <h1>VICTORY<span>SC</span></h1>
-        </div>
-        <div class="menu-icon" id="menuToggle">
-            <i class="fas fa-bars"></i>
-        </div>
-        <div class="nav-links" id="navLinks">
-            <a href="#">HOME</a>
-            <a href="#">ABOUT</a>
-            <a href="#">MATCHES</a>
-            <a href="#">TEAMS</a>
-            <a href="#">MEMBERSHIP</a>
-            <a href="#">NEWS</a>
-            <a href="#">SHOP</a>
-            <a href="#">CONTACT</a>
-            <a href="#" class="btn-login">LOGIN <i class="fas fa-user"></i></a>
-        </div>
-    </div>
-</header>
+<!-- NAV -->
+<nav>
+<h2>CALCIO</h2>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#matches">Matches</a></li>
+<li><a href="#teams">Teams</a></li>
+<li><a href="#shop">Shop</a></li>
+<li><a href="#login">Login</a></li>
+</ul>
+</nav>
 
-<main>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h2>YOUR PATH TO <br> THE CROWN STARTS HERE.</h2>
-            <p>Unleash your passion for the game · Training for your success</p>
-            <a href="#" class="btn-primary">GET STARTED <i class="fas fa-arrow-right"></i></a>
-            <div style="margin-top: 30px; font-weight: 300;">⚽ Calcio Soccer Club · Since 1998</div>
-        </div>
-    </section>
+<!-- HERO -->
+<section class="hero">
+<div>
+<h1>Your Path to The Crown Starts Here</h1>
+<p>Unleash your passion for the game</p>
+<button class="btn">Join Our Team</button>
+</div>
+</section>
 
-    <div class="container">
-        <!-- Upcoming matches with filter (Inspired by IMG_5700 & IMG_5702) -->
-        <section style="margin-top: 60px;">
-            <h2 class="section-title">Upcoming Matches</h2>
-            <div class="filter-tabs" id="filterTabs">
-                <button class="filter-btn active" data-cat="all">All Categories</button>
-                <button class="filter-btn" data-cat="men">Men</button>
-                <button class="filter-btn" data-cat="women">Women</button>
-                <button class="filter-btn" data-cat="youth">Youth</button>
-                <button class="filter-btn" data-cat="int">International</button>
-            </div>
-            <div class="matches-grid" id="matchesGrid"></div>
-        </section>
+<!-- MATCHES -->
+<section id="matches">
+<h2>Upcoming Matches</h2>
 
-        <!-- League Standings + Competition card (IMG_5702 style) -->
-        <section style="margin: 56px 0;">
-            <h2 class="section-title">League Standings</h2>
-            <div class="standings-wrapper">
-                <table class="standings-table">
-                    <thead>
-                        <tr><th>Team</th><th>M</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>P</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="team-name">Al Hilal</td><td>29</td><td>21</td><td>5</td><td>3</td><td>66</td><td>30</td><td>+36</td><td>68</td></tr>
-                        <tr><td class="team-name">Al Nassr</td><td>29</td><td>19</td><td>5</td><td>5</td><td>79</td><td>34</td><td>+45</td><td>62</td></tr>
-                        <tr><td class="team-name">Al Ittihad</td><td>29</td><td>18</td><td>6</td><td>5</td><td>62</td><td>23</td><td>+39</td><td>60</td></tr>
-                        <tr><td class="team-name">Al Ahli</td><td>29</td><td>18</td><td>5</td><td>6</td><td>56</td><td>27</td><td>+29</td><td>59</td></tr>
-                        <tr><td class="team-name">Al Shabab</td><td>29</td><td>18</td><td>4</td><td>7</td><td>60</td><td>29</td><td>+31</td><td>58</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div style="margin-top: 28px; background: var(--card-white); border-radius: 28px; padding: 20px; display: flex; justify-content: space-between; flex-wrap: wrap;">
-                <div><strong>🏆 Roshn Saudi League</strong><br>2025/2026 Season</div>
-                <div>⚽ 18 Clubs<br>📅 15 Aug 2025 – 25 May 2026</div>
-                <div><i class="fas fa-trophy"></i> Current champions: Al Hilal</div>
-            </div>
-        </section>
+<div style="text-align:center;margin-bottom:20px;">
+<button class="btn" onclick="filter('all')">All</button>
+<button class="btn" onclick="filter('men')">Men</button>
+<button class="btn" onclick="filter('women')">Women</button>
+</div>
 
-        <!-- News Section (Featured + List) -->
-        <section>
-            <h2 class="section-title">Latest News</h2>
-            <div class="news-section">
-                <div class="featured-news">
-                    <div class="featured-img" style="background-image: linear-gradient(0deg, #0a2f2a80, #0a2f2a80), url('https://placehold.co/800x400/2d5a4a/ffffff?text=National+Team'); background-size:cover;"></div>
-                    <div class="featured-content">
-                        <h3>The National Team Resumes its Training in Preparation</h3>
-                        <p style="margin: 12px 0;">AFC Asian Cup 2025 – The Spirit of Saudi Football Lives Here. Intense sessions ahead of continental glory.</p>
-                        <span style="color: var(--accent-gold);">Read more →</span>
-                    </div>
-                </div>
-                <div class="news-list">
-                    <div class="news-item"><h4>⚡ Al Ittihad Extends Lead at the Top with Decisive Win Over Al Ahli</h4><small>May 4, 2025</small></div>
-                    <div class="news-item"><h4>🇸🇦 The Saudi Women's U-20 NT Concludes Training Camp in Dammam</h4><small>May 3, 2025</small></div>
-                    <div class="news-item"><h4>🏆 King Cup Quarterfinals: Dates and venues confirmed</h4><small>May 2, 2025</small></div>
-                    <div class="news-item"><h4>🎟️ Early bird membership: Get 20% off merchandise</h4><small>May 1, 2025</small></div>
-                </div>
-            </div>
-        </section>
+<div class="grid">
+<div class="card men">Men League<br>12 May</div>
+<div class="card women">Women Cup<br>15 May</div>
+<div class="card men">International<br>20 May</div>
+</div>
+</section>
 
-        <!-- Tournaments + How it works (IMG_5700) -->
-        <div class="tournament-series">
-            <div class="tournament-card">
-                <h3><i class="fas fa-calendar-alt"></i> Upcoming Tournaments</h3>
-                <div class="tournament-item">
-                    <strong>🏆 Johnstone Park Football Tournament</strong><br>📅 19/10/2023 · ⏰ 18:00 · 📍 Johnstone Park Stadium
-                </div>
-                <div class="tournament-item">
-                    <strong>🏆 Aberdeen City FC Tournament</strong><br>📅 20/10/2023 · ⏰ 17:00 · 📍 Aberdeen City Stadium
-                </div>
-                <div class="tournament-item">
-                    <strong>🏆 Dundee United Football Tournament</strong><br>📅 21/10/2023 · ⏰ 16:00 · 📍 Dundee United Stadium
-                </div>
-            </div>
-            <div class="series-card">
-                <span class="series-badge">Green Series</span>
-                <div class="series-row"><span>🏠 Home Games</span> <span>🎟️ Tickets & Merchandise</span></div>
-                <div class="series-row"><span>✈️ Away Games</span> <span>📺 Live Streaming</span></div>
-                <span class="series-badge" style="background:#b8860b;">Regular Cup</span>
-                <div class="series-row"><span>🏟️ Home Games</span> <span>🛒 Shop Exclusive</span></div>
-                <div class="series-row"><span>🚌 Away Games</span> <span>🎫 Fan Packages</span></div>
-                <p style="margin-top: 20px;"><i class="fas fa-futbol"></i> How it works: Register your team, follow the schedule, and climb the leaderboard.</p>
-            </div>
-        </div>
+<!-- STANDINGS -->
+<section>
+<h2>League Table</h2>
+<table border="1" width="100%">
+<tr><th>M</th><th>W</th><th>D</th><th>L</th><th>P</th></tr>
+<tr><td>29</td><td>21</td><td>5</td><td>3</td><td>68</td></tr>
+<tr><td>29</td><td>19</td><td>5</td><td>5</td><td>62</td></tr>
+</table>
+</section>
 
-        <!-- Squad / Teams (IMG_5702) -->
-        <section>
-            <h2 class="section-title">The Squad</h2>
-            <div class="squad-grid">
-                <div class="squad-card"><div class="squad-icon"><i class="fas fa-male"></i></div><h3>Men's Team</h3><p>First Division · 28 players</p><a href="#" style="color:var(--primary-green);">View squad →</a></div>
-                <div class="squad-card"><div class="squad-icon"><i class="fas fa-female"></i></div><h3>Women's Team</h3><p>Elite League · 26 players</p><a href="#" style="color:var(--primary-green);">View squad →</a></div>
-                <div class="squad-card"><div class="squad-icon"><i class="fas fa-child"></i></div><h3>Youth Academy</h3><p>U-17 & U-20 · Rising stars</p><a href="#" style="color:var(--primary-green);">Discover →</a></div>
-            </div>
-        </section>
+<!-- NEWS -->
+<section>
+<h2>Latest News</h2>
+<div class="news">
+<div>
+<img src="https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a">
+<h3>Team Back in Training</h3>
+<p>Preparing for upcoming tournaments...</p>
+</div>
 
-        <!-- Data visualization: Match frequency (IMG_5701 inspired) -->
-        <div class="chart-container">
-            <h3 style="margin-bottom: 20px;">📊 Match Activity Timeline (Hourly Distribution)</h3>
-            <canvas id="matchChart" width="400" height="200" style="max-height: 280px; width:100%"></canvas>
-            <p style="margin-top: 16px; font-size: 0.8rem; text-align: center;">Based on seasonal match schedules — peak hours for soccer events</p>
-        </div>
-    </div>
-</main>
+<div>
+<p>• Big win pushes team top</p>
+<p>• Women's squad shines</p>
+<p>• Youth team dominates</p>
+</div>
+</div>
+</section>
 
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div><h4>VICTORY SC</h4><p>Training for your success since 1998. Unleash passion.</p></div>
-            <div><h4>Quick Links</h4><a href="#">Home</a><br><a href="#">About</a><br><a href="#">Matches</a><br><a href="#">Shop</a></div>
-            <div><h4>Support</h4><a href="#">Membership</a><br><a href="#">Contact</a><br><a href="#">FAQs</a><br><a href="#">Privacy</a></div>
-            <div><h4>Newsletter</h4><input type="email" placeholder="Your email" style="padding:10px; border-radius:40px; border:none; width:100%;"><button style="margin-top:8px; background:var(--accent-gold); border:none; padding:8px 20px; border-radius:40px;">Subscribe</button></div>
-        </div>
-        <div class="social-icons" style="text-align: center; margin-bottom: 20px;">
-            <i class="fab fa-instagram"></i> <i class="fab fa-twitter"></i> <i class="fab fa-facebook-f"></i> <i class="fab fa-youtube"></i>
-        </div>
-        <div class="copyright">© 2025 Victory Soccer Club — The Crown Awaits. All rights reserved.</div>
-    </div>
+<!-- TEAMS -->
+<section id="teams">
+<h2>Our Teams</h2>
+<div class="grid">
+<div class="card">Men Team</div>
+<div class="card">Women Team</div>
+<div class="card">Youth Team</div>
+</div>
+</section>
+
+<!-- SHOP -->
+<section id="shop">
+<h2>Shop</h2>
+<div class="grid shop">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1528701800489-20be3cde6a0b">
+<h3>Jersey</h3>
+<button class="btn" onclick="addToCart('Jersey')">Add</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517649763962-0c623066013b">
+<h3>Boots</h3>
+<button class="btn" onclick="addToCart('Boots')">Add</button>
+</div>
+</div>
+</section>
+
+<!-- LOGIN -->
+<section id="login">
+<h2>Login / Register</h2>
+
+<div class="form-box">
+<input id="email" type="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+
+<button class="btn" onclick="register()">Register</button>
+<button class="btn" onclick="login()">Login</button>
+</div>
+</section>
+
+<!-- CHART -->
+<section>
+<h2>Match Activity</h2>
+<canvas id="chart"></canvas>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<h3>CALCIO CLUB</h3>
+<p>© 2026 All rights reserved</p>
 </footer>
 
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
-    // Mobile menu toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('show');
-    });
+// FILTER
+function filter(type){
+let cards=document.querySelectorAll('.card');
+cards.forEach(c=>{
+if(type==='all'){c.style.display='block';}
+else{c.style.display=c.classList.contains(type)?'block':'none';}
+});
+}
 
-    // Match data (based on provided images)
-    const matchesData = [
-        { category: "women", tournament: "Women's 1st Div. League", date: "May 5, 2025 • 7:30 PM", venue: "Al-Nahda Club Stadium" },
-        { category: "men", tournament: "King Cup", date: "May 6, 2025 • 8:05 PM", venue: "Reserve Stadium A, King Abdul-Aziz Stadium" },
-        { category: "men", tournament: "King Cup", date: "May 8, 2025 • 10:30 PM", venue: "Al-Imana Stadium, Jeddah" },
-        { category: "int", tournament: "Diriyah Saudi Supercup", date: "May 11, 2025 • 9:45 PM", venue: "Prince Sultan Bin Ali Stadium, Abha" },
-        { category: "youth", tournament: "Youth National League", date: "May 12, 2025 • 5:00 PM", venue: "Youth City Complex" },
-        { category: "women", tournament: "Women's International Friendly", date: "May 14, 2025 • 6:30 PM", venue: "King Fahd Intl Stadium" }
-    ];
+// CART
+let cart=[];
+function addToCart(item){
+cart.push(item);
+alert(item+" added to cart");
+}
 
-    function renderMatches(filter = "all") {
-        const grid = document.getElementById("matchesGrid");
-        const filtered = filter === "all" ? matchesData : matchesData.filter(m => m.category === filter);
-        if (filtered.length === 0) {
-            grid.innerHTML = "<div style='grid-column:1/-1; text-align:center; padding:40px;'>No matches in this category</div>";
-            return;
-        }
-        grid.innerHTML = filtered.map(m => `
-            <div class="match-card">
-                <div class="tourney">🏆 ${m.tournament}</div>
-                <div class="match-date"><i class="far fa-calendar-alt"></i> ${m.date}</div>
-                <div class="venue"><i class="fas fa-map-marker-alt"></i> ${m.venue}</div>
-                <div style="margin-top:12px;"><span style="background:#eef2f0; padding:4px 12px; border-radius:30px;">🎟️ Get tickets</span></div>
-            </div>
-        `).join('');
-    }
+// CHART
+new Chart(document.getElementById("chart"),{
+type:'bar',
+data:{
+labels:['8AM','10AM','12PM','2PM','4PM'],
+datasets:[{label:'Matches',data:[2,4,3,5,6]}]
+}
+});
 
-    // filter event listeners
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const cat = btn.getAttribute('data-cat');
-            renderMatches(cat);
-        });
-    });
-    renderMatches("all");
+// FIREBASE (PUT YOUR CONFIG)
+function register(){
+alert("Connect Firebase to enable registration");
+}
 
-    // Chart.js timeline (IMG_5701 style: event distribution across hours)
-    const ctx = document.getElementById('matchChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
-            datasets: [{
-                label: 'Matches / Events Frequency',
-                data: [2, 4, 7, 12, 18, 24, 22, 15, 9, 5],
-                backgroundColor: '#d4af37',
-                borderRadius: 12,
-                barPercentage: 0.65
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            plugins: {
-                legend: { position: 'top' },
-                tooltip: { callbacks: { label: (ctx) => `${ctx.raw} matches scheduled` } }
-            },
-            scales: {
-                y: { beginAtZero: true, title: { display: true, text: 'Number of Events' } },
-                x: { title: { display: true, text: 'Kick-off Hour' } }
-            }
-        }
-    });
+function login(){
+alert("Connect Firebase to enable login");
+}
 </script>
 
-<!-- inline extra style for responsiveness and consistency -->
 </body>
 </html>
